@@ -42,7 +42,7 @@
 
         cats.forEach(mCat => {
             motherInfo += mCat.name !== cats[cats.length - 1].name ?
-            mCat.name + ', ' : ' and ' + mCat.name;
+            mCat.name + ', ' : ' and ' + mCat.name + '.';
             
             mCat.kittens.forEach(kitten => {
                 total += 1;
