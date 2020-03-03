@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="spinner.gif" width="30%" height="30%">
+    <script>
+        const spinner_gif = document.querySelector('img');
+        console.log(spinner_gif);
+        const load = new Promise(resolve => {
+            setTimeout(() => {
+                fetch('sape.json')
+                .then(r => r.json())
+                .then(rr => console.log(rr))
+                .then(resolve);
+            }, 1000);
+        })
+
+        load.then(() => spinner_gif.remove());
+    </script>
+</body>
+</html>
