@@ -1,15 +1,19 @@
 console.log("Aqui estamos jeje");
-/*
+
 // Elements
-const [input, button, counters] = document.querySelectorAll('input, button, #counters');
-el counters es HTMLUListElements
-Hay que separar los 3 elementos
+//const [input, button, counters] = document.querySelectorAll('input, button, #counters');
+const input: HTMLInputElement = document.querySelector('input');
+const button: HTMLButtonElement = document.querySelector('button');
+const counters: HTMLUListElement = document.querySelector('#counters');
+
+//el counters es HTMLUListElements
+
 // Functions
-function count(miliseconds) {
+function count(miliseconds: number) {
     return new Promise(resolve => setTimeout(resolve, miliseconds))
 }
 
-function addCounter(seconds) {
+function addCounter(seconds: number) {
     let c = 0;
 
     const counter = document.createElement('li');
@@ -34,7 +38,8 @@ function addCounter(seconds) {
 
 // Events
 input.onkeyup = (e) => {
-    const seconds = e.target.value;
+    const inputElement = e.target as HTMLInputElement;
+    const seconds = inputElement.value;
     // Al target value hay que forzarle 
     // const inputElement = e.target as HTMLInputElement
     // const seconds = inputElement.value;
@@ -47,10 +52,10 @@ input.onkeyup = (e) => {
 }
 
 button.onclick = () => {
-    if (input.value) {
-        addCounter(input.value);
+    const c_number: number = parseInt(input.value);
+    if (c_number) {
+        addCounter(c_number);
     }
     input.focus();
     input.select();
 }
-*/
