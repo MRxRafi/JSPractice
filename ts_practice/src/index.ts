@@ -4,10 +4,11 @@ const taskList: HTMLUListElement = document.querySelector('#taskList') as HTMLUL
 const tasksLeft = document.querySelector('#tasksLeft');
 const modal = document.querySelector('.modal-container');
 const p = document.querySelector('.modal p');
-const info: HTMLDivElement = document.querySelector('.info div') as HTMLDivElement;
-const completedButton: HTMLButtonElement = document.querySelector('#completedButton') as HTMLButtonElement;
+const info: HTMLDivElement = document.querySelector('.info div');
+const completedButton: HTMLButtonElement = document.querySelector('#completedButton');
 const pendingButton: HTMLButtonElement = document.querySelector('#pendingButton');
 const allButton: HTMLButtonElement = document.querySelector('#allButton');
+const icons: Array<HTMLElement> = new Array();
 
 //EVENTOS
 addTaskInput.addEventListener('keyup', (e) => {
@@ -33,6 +34,7 @@ function createElements(){
         //listItem.className = "updating";
         icon.className = "material-icons btn-delete";
         icon.textContent = "delete_outline";
+        icons.push(icon);
         sp.textContent = addTaskInput.value;
         cb.type = "checkbox";
 
@@ -45,16 +47,35 @@ function createElements(){
     }
 }
 
-function createCBFunctionality(){
-
-}
-
 function buttonFunctionality(e: Event) {
     let targetB: HTMLButtonElement = e.target as HTMLButtonElement;
-    console.log(info.childNodes);
     info.childNodes.forEach((n: HTMLButtonElement) => {
         if (targetB.id != n.id && n.disabled) n.disabled = false;
     })
     
+    // Hide elements that match the button clicked
+    let listElements: NodeList = taskList.childNodes;
+    listElements.forEach((n: HTMLLIElement) => {
+        if(n.nodeName === 'LI'){
+            let cb: HTMLInputElement;
+            n.firstChild.childNodes.forEach((el: HTMLInputElement) => {
+                if(el.nodeName === 'INPUT') cb = el;
+            })
+            switch(targetB.textContent){
+                case 'Todas':
+                    n.style.display = 'flex';
+                    break;
+                case 'Pendientes':
+                    if(!cb.checked) n.style.display = 'flex';
+                    if(cb.checked) n.style.display = 'none';
+                    break;
+                case 'Completadas':
+                    if(!cb.checked) n.style.display = 'none';
+                    if(cb.checked) n.style.display = 'flex';
+                    break;
+            }
+        }
+        
+    })
     if(!targetB.disabled) targetB.disabled = true;
 }
