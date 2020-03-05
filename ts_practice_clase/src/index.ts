@@ -1,12 +1,23 @@
 import { Task } from "./task";
 import { TASKS } from "./mock-tasks";
+import { TaskFilter } from "./task-filter";
 
 // Elements
 const taskListElement: HTMLUListElement = document.querySelector('#taskList');
 const taskInputElement: HTMLInputElement = document.querySelector('#taskInput');
 
+const modalElement: HTMLDivElement = document.querySelector('.modal');
+const modalYesButton: HTMLButtonElement = modalElement.querySelector('button:first-child');
+const modalNoButton: HTMLButtonElement = document.querySelector('button:last-child'); // ¿Segundo boton?
+const tasksLeftElement: HTMLParagraphElement = document.querySelector('#tasksLeft');
+const allButton: HTMLButtonElement = document.querySelector('');
+const pendingButton: HTMLButtonElement = document.querySelector('');
+const completedButton: HTMLButtonElement = document.querySelector('');
+const filterButtons = [allButton, pendingButton, completedButton];
+
 // Data functions
-function listTasks(): Task[] {
+function listTasks(filter: TaskFilter): Task[] {
+    
     return TASKS;
 }
 
@@ -20,6 +31,29 @@ function createTask(description: string): Task {
 
     tasks.push(newTask);
     return newTask;
+}
+
+function updateTask(task: Task): Task {
+    const tasks = TASKS;
+
+    //findIndex te devuelve el indice del elemento que devuelva true (currentTask)
+    const index = tasks.findIndex(currentTask => currentTask.id === task.id);
+
+    tasks[index] = task;
+    return task;
+}
+
+function deleteTask(task: Task): Task {
+    const tasks = TASKS;
+    const index = tasks.findIndex(currentTask => currentTask.id === task.id);
+
+    const taskRemoved = tasks[index];
+    tasks.
+
+}
+function tasksLeft(): number {
+    const tasks = TASKS;
+    return tasks.filter(task => task.done === false).length;
 }
 
 // HTML functions
@@ -39,21 +73,57 @@ function createTaskElement(task: Task): HTMLLIElement {
     `;
 
     li.querySelector('span').onclick = () => {
-        // TODO update Task
-        console.log('TODO update task description', task.id);
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = task.description;
+
+        const updateButton = document.createElement('i');
+        updateButton.className = 'material-icons'
+        updateButton.textContent = 'done';
+
+        updateButton.onclick = () => {
+            const updatedTask = {...task};
+            updatedTask.description = input.value;
+            updateTask(task);
+
+            const updatedTaskElement = createTaskElement(updatedTask);
+
+        }
+
+        li.appendChild(input);
+        li.appendChild(updateButton);
+        li.classList.add('updating')
     }
 
     li.querySelector('i').onclick = () => {
-        // TODO delete Task
-        console.log('TODO delete task', task.id);
+        modalElement.querySelector('p').textContent = task.description;
+        modalElement.classList.add('open');
+
+        modalYesButton.onclick = () => {
+            deleteTask(task);
+            li.remove();
+            li.classList.remove('open');
+        }
     }
 
-    li.querySelector('input').onclick = () => {
+    li.querySelector('input').onchange = () => {
         // TODO update Task
         console.log('TODO update task done', task.id);
     }
 
     return li;
+}
+
+function updateTaskLeftElement(){
+    tasksLeftElement.textContent = `Quedan ${tasksLeft} tareas.`;
+}
+
+function updateFilterButtonsElement(e: MouseEvent){
+    const element = e.target as HTMLButtonElement;
+
+    filterButtons.forEach(()=> {
+
+    })
 }
 
 // Events
@@ -68,6 +138,10 @@ taskInputElement.onkeyup = (e) => {
         taskListElement.innerHTML += taskElement;
     }
 };
-// Load
 
-listTasksElements(taskListElement, listTasks());
+modalNoButton.onclick = () => {
+    modalElement.classList.remove('open');
+}
+// Load
+listTasksElements(taskListElement, listTasks(TaskFilter.All));
+updateTaskLeftElement();
