@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript</title>
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script src="bundle.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Administrador de tareas</h1>
+  </header>
+  <main>
+    <label>
+      <input id="taskInput" type="text" placeholder="¿Qué necesitas hacer?">
+    </label>
+    <ul id="taskList">
+     <!-- It gets filled with javascript function listTaskElements -->
+    </ul>
+    <div class="info">
+      <p>Quedan 6 tareas</p>
+      <div>
+        <button class="button" disabled>Todas</button>
+        <button class="button">Pendientes</button>
+        <button class="button">Completadas</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>Autor: Rafael Tomé Ruiz</p>
+    <p>GitHub: <a href="https://github.com/MRxRafi/">https://github.com/MRxRafi/</a></p>
+  </footer>
+
+  <div class="modal">
+    <div class="box">
+      <h2>¿Estás seguro de que deseas eliminar la tarea?</h2>
+      <p>Una tarea para eliminar</p>
+      <div>
+        <button class="button large">Si</button>
+        <button class="button large">No</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
