@@ -1,0 +1,43 @@
+div.wrapper h1 + div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 4px solid gray;
+}
+
+ul li div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+ul li button {
+  background: dodgerblue;
+  border: none;
+  padding: 7px;
+  color: white;
+  text-decoration: none;
+  width: 7%;
+}
+
+ul li button:hover {
+  box-shadow: 3px 5px lightgray;
+}
+
+ul li button:active {
+  box-shadow: 3px 5px darkblue;
+}

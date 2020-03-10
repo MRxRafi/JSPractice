@@ -1,0 +1,23 @@
+<main class="wrapper">
+  <h1>PRODUCTS</h1>
+  <div class="icons">
+    <i class="material-icons">
+      view_list
+    </i>
+    <i class="material-icons">
+      view_module
+    </i>
+  </div>
+
+  <ul>
+    <li *ngFor = "let product of products">
+      <img [src]="product.image" [alt]="product.name">
+      <div>
+        <h3>{{product.name}}</h3>
+        <p>{{product.description}}</p>
+        <p>{{product.price}}€</p>
+        <button>Add to cart</button>
+      </div>
+    </li>
+  </ul>
+</main>
