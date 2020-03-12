@@ -1,12 +1,27 @@
 /* General */
+html {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  padding: 5px;
+  font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-weight: lighter;
 
   background: lightgrey;
+  color: darkslategray;
 }
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+ul {
+  margin: 0;
+}
+
 
 /* Header */
 header h1 {

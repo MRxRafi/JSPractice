@@ -1,15 +1,74 @@
 main {
     background: white;
     margin: 0 auto;
-    max-width: 370px;
+    max-width: 400px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
 }
 
-main input {
+main label input {
+    font-family: inherit;
+    font-size: inherit;
+    width: 100%;
+    padding: 12px;
+    margin: 4px 0;
     border: none;
     outline: none;
-    width: 100%;
 }
 
-main div p {
+/* LIST */
+.taskList {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+    padding: 10px;
+    min-height: 300px;
+}
+
+.taskList li {
+    display: flex;
+    margin: 10px 0;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+.taskList li i {
+    cursor: pointer;
+}
+
+.taskList li div input:checked + span {
+    text-decoration: line-through;
+}
+
+/* INFO (BUTTONS) */
+main div.info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+main div.info div {
+    display: flex;
+    justify-content: space-between;
+}
+
+main div.info div button {
+    margin: 5px;
+    border: none;
+    outline: none;
+    background: darkslategray;
+    color: white;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+main div.info div button:disabled {
+    background: lightgrey;
+    color: darkslategrey;
+    box-shadow: none;
+}
+
+main div.info p {
     font-size: 10px;
 }
